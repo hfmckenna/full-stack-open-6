@@ -19,8 +19,6 @@ const AnecdoteList = () => {
           <button onClick={() => vote(anecdote.id)}>vote</button>
         </div>
       </div>)
-
-
 }
 
 export default AnecdoteList
