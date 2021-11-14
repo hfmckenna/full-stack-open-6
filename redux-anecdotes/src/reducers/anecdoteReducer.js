@@ -32,6 +32,10 @@ const reducer = (state = initialState, action) => {
       }
       return [...filtered, newAnecdote]
     }
+    case 'addAnecdote': {
+      const newAnecdote = asObject(action.content)
+      return [...state, newAnecdote]
+    }
     default:
       return state
   }
