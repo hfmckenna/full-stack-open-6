@@ -8,7 +8,7 @@ const Notification = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       dispatch({ type: 'clearNotification' })
-    }, 5000)
+    }, notification.time)
     return () => {
       clearTimeout(timer)
     }
@@ -20,9 +20,9 @@ const Notification = () => {
     borderWidth: 1
   }
   return (
-    notification &&
+    notification.message &&
     <div style={style}>
-      {notification}
+      {notification.message}
     </div>
   )
 }

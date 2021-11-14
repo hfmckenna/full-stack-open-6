@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { createAnecdote } from '../reducers/anecdoteReducer'
+import { setNotification } from '../reducers/notificationReducer'
 
 const AnecdoteForm = () => {
   const dispatch = useDispatch()
@@ -11,9 +12,9 @@ const AnecdoteForm = () => {
     if (content !== '') {
       event.target.anecdote.value = ''
       dispatch(createAnecdote(content))
-      dispatch({ type: 'changeNotification', message: `You added ${content}` })
+      dispatch(setNotification(`You added ${content}`, 5000))
     } else {
-      dispatch({ type: 'changeNotification', message: 'No anecdote entered!' })
+      dispatch(setNotification('No anecdote entered!', 1000))
     }
   }
 

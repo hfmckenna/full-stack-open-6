@@ -1,13 +1,34 @@
-const notificationMessage = ""
+const notification = {
+  message: '',
+  time: 5000
+}
 
-const initialState = notificationMessage
+const initialState = notification
+
+export const setNotification = (message, time) => {
+  return dispatch => {
+    dispatch({
+      type: 'changeNotification',
+      data: {
+        message,
+        time
+      }
+    })
+  }
+}
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'clearNotification':
-      return ""
+      return {
+        ...state,
+        message: ''
+      }
     case 'changeNotification':
-      return action.message
+      return {
+        message: action.data.message,
+        time: action.data.time
+      }
     default:
       return state
   }
