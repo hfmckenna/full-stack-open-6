@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
+import { clearNotification } from '../reducers/notificationReducer'
 
-const Notification = () => {
-  const notification = useSelector(state => state.notification)
-  const dispatch = useDispatch()
-
+const Notification = ({ notification, clearNotification }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      dispatch({ type: 'clearNotification' })
+      clearNotification()
     }, notification.time)
     return () => {
       clearTimeout(timer)
@@ -27,4 +25,10 @@ const Notification = () => {
   )
 }
 
-export default Notification
+const mapStateToProps = (state) => {
+  return { notification: state.notification }
+}
+
+const ConnectedNotification = connect(mapStateToProps, { clearNotification })(Notification)
+
+export default ConnectedNotification

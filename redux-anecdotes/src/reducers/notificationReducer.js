@@ -17,6 +17,14 @@ export const setNotification = (message, time) => {
   }
 }
 
+export const clearNotification = () => {
+  return dispatch => {
+    dispatch({
+      type: 'clearNotification'
+    })
+  }
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'clearNotification':
